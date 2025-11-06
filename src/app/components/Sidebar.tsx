@@ -1,5 +1,23 @@
 import React from 'react'
 import { IoBrowsersOutline, IoCalculatorOutline, IoTrendingUpOutline } from 'react-icons/io5'
+import { SidebarMenuItems } from './SidebarMenuItems'
+import { MenuItems } from '../interfaces/menu-items.interface'
+
+const menuItems:MenuItems[] = [
+    {
+        path: "/dashboard",
+        icon: <IoTrendingUpOutline/>,
+        title: "Dashboard",
+        subtitle: "Student's dashboard"
+    },
+    {
+        path: "/dashboard/counter",
+        icon: <IoCalculatorOutline/>,
+        title: "Counter",
+        subtitle: "Simple example of counter"
+    },
+
+]
 
 export const Sidebar = () => {
   return (
@@ -21,40 +39,11 @@ export const Sidebar = () => {
             </a>
         </div>   
         <div className='w-full px-6'>
-            <a href="/dashboard"
-                className='w-full px-2 inline-flex space-x-2 items-center border-b border-slate-700 py-3'
-            >
-                <div>
-                    <IoTrendingUpOutline/>
-                </div>
-                <div className='flex flex-col'>
-                    <span className='text-lg font-bold text-white leading-5'>Dashboard</span>
-                    <span className='text-sm text-white/50 hidden md:block'>Student's dashboard</span>
-                </div>    
-            </a>  
-            <a href="/dashboard/counter"
-                className='w-full px-2 inline-flex space-x-2 items-center border-b border-slate-700 py-3'
-            >
-                <div>
-                    <IoCalculatorOutline/>
-                </div>
-                <div className='flex flex-col'>
-                    <span className='text-lg font-bold text-white leading-5'>Counter</span>
-                    <span className='text-sm text-white/50 hidden md:block'>Simple example of counter</span>
-                </div>    
-            </a>  
-            <a href=""
-                className='w-full px-2 inline-flex space-x-2 items-center border-b border-slate-700 py-3'
-            >
-                <div>
-                    <IoTrendingUpOutline/>
-                </div>
-                <div className='flex flex-col'>
-                    <span className='text-lg font-bold text-white leading-5'>Dashboard</span>
-                    <span className='text-sm text-white/50 hidden md:block'>Student's dashboard</span>
-                </div>    
-            </a>  
-         
+            {
+                menuItems.map( item => (
+                    <SidebarMenuItems key={item.path} {...item}/>
+                ))
+            }
         </div>
     </div>
   )
